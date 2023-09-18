@@ -1,0 +1,96 @@
+.tabelaGastos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabelaGastos thead {
+    background-color: #023E8A;
+    color: #FFF;
+    font-weight: 600;
+
+}
+.tabelaGastos thead tr{
+    display: flex;
+    justify-content: space-around;
+    padding-right: 200px;
+}
+
+.tabelaGastos tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tabelaGastos tbody tr{
+    display: flex;
+    justify-content: center;
+}
+
+.tabelaGastos tfoot {
+    display: flex;
+    justify-content: center;
+    background: #023E8A;
+}
+
+.tabelaGastos tfoot tr{
+    display: flex;
+    align-items: center;
+}
+
+
+.tabelaGastos tfoot tr td {
+    padding: 10px;
+    color: #FFF;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tabelaGastos input {
+    padding: 5px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 0;
+    min-width: 100px;
+    max-width: 300px;
+}
+
+.btnAdicionarGasto {
+    cursor: pointer;
+    background-color: #00B4D8;
+    border: 0;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+}
+
+.btnAdicionarGasto:hover {
+    background-color: #0096C7;
+}
+
+.campoInputGasto {
+    display: flex;
+    gap: 5px;
+    padding-block: 10px;
+}
+
+.DadosGasto {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    width: 100%;
+
+}
+
+.BotoesGasto {
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+    border-radius: 5px;
+    width: 254px;
+}

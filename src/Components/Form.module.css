@@ -1,0 +1,10 @@
+.formLogin {
+    background: #023E8A;
+    padding: 30px;
+    border-radius: 0 0 25px 25px;
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
