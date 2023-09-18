@@ -181,7 +181,7 @@ function TabelaGastos() {
         <tfoot>
           <tr>
             <div className={styles.saidaTotal}>
-                <td>Total</td>
+                <td>Total R$</td>
                 <td className={styles.totalGastos}>{totalGastos}</td>
             </div>
             <td>

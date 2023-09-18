@@ -1,21 +1,23 @@
 
 .containerGasto {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     background: #0077B6;
     color: #FFF;
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-inline: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
     border: 2px solid #023E8A;
+    justify-content: space-between;
 }
 
 .containerGasto div {
-    background: #023E8A;
+    display: flex;
     height: 100%;
     padding-inline: 5px;
+    justify-content: center;
+    background-color: #0f4f85;
 }
 
 .containerResumo{
@@ -24,6 +26,15 @@
     align-items: center;
     flex-direction: column;
     color: #023e8a;
+}
+
+.containerResumo h3 {
+    font-size: 1.5rem;
+    color: white;
+    background: #0077B6;
+    padding: 12px;
+    border-radius: 10px;
+    border: 3px solid #0f4f85;
 }
 
 .btnVoltarResumo {

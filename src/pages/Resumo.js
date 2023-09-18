@@ -17,6 +17,7 @@ export const Resumo = () => {
       <h1>Resumo dos Gastos</h1>
       <h3>Gasto total: R${totalGastos}</h3>
       {gastosContext.length === 0 && <p>Não existem gastos até o momento</p>}
+      <div>
       {gastosContext.map((gasto) => (
         <div className={styles.containerGasto}>
             <div>
@@ -33,6 +34,7 @@ export const Resumo = () => {
             </div>
         </div>
       ))}
+      </div>
       <button className={styles.btnVoltarResumo} onClick={() => navigate("/index")}>voltar</button>
     </div>
   );
