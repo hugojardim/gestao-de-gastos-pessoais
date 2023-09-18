@@ -23,7 +23,7 @@ function TabelaGastos() {
   const opcoesCategoria = [
     "Urgente",
     "Importante",
-    "Delegável",
+    "Necessário",
     "Adiável",
     "Desnecessário",
   ];
