@@ -142,12 +142,14 @@ function TabelaGastos() {
             </div>  
           <td>
             {estaEditando ? (
-              <button onClick={confirmarEdicao}>Confirmar</button>
+              <div className={styles.btnConfirmarEdicao}> 
+                <button onClick={confirmarEdicao}>Confirmar</button>
+              </div>
             ) : (
-              <>
+              <div className={styles.BotoesGasto}>
                 <button className={styles.btnRemover} onClick={() => removerGasto(index)}>Remover</button>
                 <button className={styles.btnEditar} onClick={() => editarGasto(index)}>Editar</button>
-              </>
+              </div>
             )}
           </td>
         </tr>

@@ -13,24 +13,14 @@
     background-color: #233751;
     color: #FFF;
     font-weight: 600;
-
+    padding-right: 160px;
 }
 .tabelaGastos thead tr{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
     align-items: center;
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.tabelaGastos tbody {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.tabelaGastos tbody tr{
-    display: flex;
-    justify-content: space-around;
-}
 
 .tabelaGastos tfoot {
     display: flex;
@@ -43,6 +33,22 @@
     align-items: center;
 }
 
+.saidaGastos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: #195eb7;
+    align-items: center;
+    width: 100%;
+}
+
+.saidaGastos td{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #233751;
+}
+
 .saidaTotal {
     display: flex;
     background: #0077B6;
@@ -50,7 +56,7 @@
 }
 
 .totalGastos {
-    background-color: #184056;
+    background-color: #233751;
     border-radius: 0 10px 10px 0;
 }
 
@@ -80,7 +86,7 @@
     border-radius: 5px;
     padding: 9px;
     width: fit-content;
-    margin-right: 80px;
+    margin-right: 89px;
 }
 
 .btnAdicionarGasto:hover {
@@ -105,9 +111,7 @@
 .BotoesGasto {
     display: flex;
     justify-content: space-around;
-    gap: 5px;
-    border-radius: 5px;
-    width: 254px;
+    width: 150px;
 }
 
 .conjuntoTabela {
@@ -133,13 +137,9 @@
     border: 1px solid #233751;
 }
 
-.saidaGastos {
+.bodyGastos tr{
     display: flex;
-    width: 90%;
-    justify-content: space-around;
-    padding-inline: 10px;
-    background-color: #195eb7;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .btnRemover {
@@ -167,10 +167,28 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
 }
 
 .campoValor button {
     background-color: #00B4D8;
+    border: 0;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.btnConfirmarEdicao {
+    height: 100%;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnConfirmarEdicao button {
+    background-color: #5cd73d;
     border: 0;
     border-radius: 5px;
     padding: 9px;
