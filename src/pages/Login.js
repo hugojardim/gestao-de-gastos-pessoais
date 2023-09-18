@@ -21,7 +21,7 @@ function Login() {
             return true;
           }
         }
-        alert("Credenciais inválidas");
+        alert("Credenciais estão em DadosLogin.js");
         return false;
     }
 
