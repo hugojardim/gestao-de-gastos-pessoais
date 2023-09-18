@@ -1,0 +1,38 @@
+
+.containerGasto {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background: #0077B6;
+    color: #FFF;
+    padding-right: 40px;
+    padding-left: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #023E8A;
+}
+
+.containerGasto div {
+    background: #023E8A;
+    height: 100%;
+    padding-inline: 5px;
+}
+
+.containerResumo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #023e8a;
+}
+
+.btnVoltarResumo {
+    background: #023E8A;
+    color: #FFF;
+    border: none;
+    border-radius: 10px;
+    padding-inline: 20px;
+    padding-block: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}

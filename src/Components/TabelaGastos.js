@@ -1,175 +1,197 @@
-import React, { useState } from 'react';
-import AdicionarGasto from './AdicionarGasto';
-import styles from './TabelaGastos.module.css';
-import TabelaHeader from './TabelaHeader';
-import TabelaRow from './TabelaRow';
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AdicionarGasto from "./AdicionarGasto";
+import styles from "./TabelaGastos.module.css";
+import TabelaHeader from "./TabelaHeader";
+import { TotalGastosContext } from "../context/TotalGastos";
 
 function TabelaGastos() {
-    const [gastos, setGastos] = useState([]);
-    const [ordemAscendente, setOrdemAscendente] = useState(true);
-    const [gastoEditando, setGastoEditando] = useState(null);
-    const [valoresEditados, setValoresEditados] = useState({
-        valor: '',
-        data: '',
-        descricao: '',
-        categoria: '',
+  const { gastosContext, setGastosContext } = useContext(TotalGastosContext);
+  const navigate = useNavigate();
+  const [ordemAscendente, setOrdemAscendente] = useState(true);
+  const [gastoEditando, setGastoEditando] = useState(null);
+  const [valoresEditados, setValoresEditados] = useState({
+    valor: "",
+    data: "",
+    descricao: "",
+    categoria: "",
+  });
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
+  const [categoriaEditada, setCategoriaEditada] = useState("");
+
+  const opcoesCategoria = [
+    "Urgente",
+    "Importante",
+    "Delegável",
+    "Adiável",
+    "Desnecessário",
+  ];
+
+  const adicionarGasto = (novoGasto) => {
+    setGastosContext([...gastosContext, novoGasto]);
+  };
+
+  const removerGasto = (index) => {
+    const gastosAtualizados = gastosContext.filter((_, i) => i !== index);
+    setGastosContext(gastosAtualizados);
+  };
+
+  const editarGasto = (index) => {
+    setGastoEditando(index);
+    const { valor, data, descricao, categoria } = gastosContext[index];
+    setValoresEditados({ valor, data, descricao, categoria });
+    setCategoriaEditada(categoria);
+  };
+
+  const confirmarEdicao = () => {
+    const gastosAtualizados = [...gastosContext];
+    gastosAtualizados[gastoEditando] = {
+      valor: valoresEditados.valor,
+      data: valoresEditados.data,
+      descricao: valoresEditados.descricao,
+      categoria: categoriaEditada,
+    };
+    setGastosContext(gastosAtualizados);
+    setGastoEditando(null);
+    setCategoriaEditada("");
+  };
+
+  const filtrarGastosPorCategoria = () => {
+    if (categoriaSelecionada) {
+      return gastosContext.filter(
+        ({ categoria }) => categoria === categoriaSelecionada
+      );
+    }
+    return gastosContext; // Retorna todos os gastosContext se nenhuma categoria for selecionada
+  };
+
+  const alternarOrdenacao = () => {
+    // Ordene os gastosContext com base no valor
+    const gastosOrdenados = [...gastosContext].sort((a, b) => {
+      if (ordemAscendente) {
+        return parseFloat(b.valor) - parseFloat(a.valor);
+      } else {
+        return parseFloat(a.valor) - parseFloat(b.valor);
+      }
     });
-    const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
-    const [categoriaEditada, setCategoriaEditada] = useState('');
 
-    const opcoesCategoria = ['Urgente', 'Importante', 'Delegável', 'Adiável', 'Desnecessário'];
+    // Atualize o estado de gastosContext e a ordem
+    setGastosContext(gastosOrdenados);
+    setOrdemAscendente(!ordemAscendente);
+  };
 
-    const somaValores = () => {
-        return gastos.reduce((total, { valor }) => total + parseFloat(valor), 0);
-    };
+  const RenderizarGastos = () => {
+    const gastosFiltrados = filtrarGastosPorCategoria();
 
-    const adicionarGasto = (novoGasto) => {
-        setGastos([...gastos, novoGasto]);
-    };
+    return gastosFiltrados.map((gasto, index) => {
+      const estaEditando = gastoEditando === index;
+      const { valor, descricao, categoria } = valoresEditados;
 
-    const removerGasto = (index) => {
-        const gastosAtualizados = gastos.filter((_, i) => i !== index);
-        setGastos(gastosAtualizados);
-    };
+      return (
+        <tr key={index}>
+            <div className={styles.saidaGastos}>
+                <td>
+                    {estaEditando ? (
+                    <input
+                        type="text"
+                        value={valor}
+                        onChange={(e) =>
+                        setValoresEditados({
+                            ...valoresEditados,
+                            valor: e.target.value,
+                        })
+                        }
+                    />
+                    ) : (
+                    gasto.valor
+                    )}
+                </td>
+                <td>{gasto.data}</td>
+                <td>
+                    {estaEditando ? (
+                    <input
+                        type="text"
+                        value={descricao}
+                        onChange={(e) =>
+                        setValoresEditados({
+                            ...valoresEditados,
+                            descricao: e.target.value,
+                        })
+                        }
+                    />
+                    ) : (
+                    gasto.descricao
+                    )}
+                </td>
+                <td>
+                    {estaEditando ? (
+                    <select
+                        value={categoria}
+                        onChange={(e) => setCategoriaEditada(e.target.value)}
+                    >
+                        {opcoesCategoria.map((opcao, index) => (
+                        <option key={index} value={opcao}>
+                            {opcao}
+                        </option>
+                        ))}
+                    </select>
+                    ) : (
+                    gasto.categoria
+                    )}
+                </td>
+            </div>  
+          <td>
+            {estaEditando ? (
+              <button onClick={confirmarEdicao}>Confirmar</button>
+            ) : (
+              <>
+                <button className={styles.btnRemover} onClick={() => removerGasto(index)}>Remover</button>
+                <button className={styles.btnEditar} onClick={() => editarGasto(index)}>Editar</button>
+              </>
+            )}
+          </td>
+        </tr>
+      );
+    });
+  };
 
-    const editarGasto = (index) => {
-        setGastoEditando(index);
-        const { valor, data, descricao, categoria } = gastos[index];
-        setValoresEditados({ valor, data, descricao, categoria });
-        setCategoriaEditada(categoria);
-    };
+  const handleClick = () => {
+    navigate("/resumo");
+  };
 
-    const confirmarEdicao = () => {
-        const gastosAtualizados = [...gastos];
-        gastosAtualizados[gastoEditando] = {
-            valor: valoresEditados.valor,
-            data: valoresEditados.data,
-            descricao: valoresEditados.descricao,
-            categoria: categoriaEditada,
-        };
-        setGastos(gastosAtualizados);
-        setGastoEditando(null);
-        setCategoriaEditada('');
-    };
+  const totalGastos = gastosContext.reduce(
+    (total, { valor }) => total + parseFloat(valor),
+    0
+  );
 
-    const filtrarGastosPorCategoria = () => {
-        if(categoriaSelecionada) {
-            return gastos.filter(({ categoria }) => categoria === categoriaSelecionada);
-        }
-        return gastos; // Retorna todos os gastos se nenhuma categoria for selecionada
-    };    
+  return (
+    <div className={styles.conjuntoTabela}>
+      <table className={styles.tabelaGastos}>
+        <TabelaHeader
+          categoriaSelecionada={categoriaSelecionada}
+          setCategoriaSelecionada={setCategoriaSelecionada}
+          opcoesCategoria={opcoesCategoria}
+          alternarOrdenacao={alternarOrdenacao}
+        />
+        <tbody className={styles.bodyGastos}>
+          <RenderizarGastos />
+        </tbody>
+        <tfoot>
+          <tr>
+            <div className={styles.saidaTotal}>
+                <td>Total</td>
+                <td className={styles.totalGastos}>{totalGastos}</td>
+            </div>
+            <td>
+              <AdicionarGasto onAdicionar={adicionarGasto} />
+            </td>
+          </tr>
+        </tfoot>
+      </table>
 
-    const alternarOrdenacao = () => {
-        // Ordene os gastos com base no valor
-        const gastosOrdenados = [...gastos].sort((a, b) => {
-            if (ordemAscendente) {
-                return parseFloat(b.valor) - parseFloat(a.valor);
-                
-            } else {
-                return parseFloat(a.valor) - parseFloat(b.valor);
-            }
-        });
-
-        // Atualize o estado de gastos e a ordem
-        setGastos(gastosOrdenados);
-        setOrdemAscendente(!ordemAscendente);
-    };
-
-    const renderizarGastos = () => {
-        const gastosFiltrados = filtrarGastosPorCategoria();
-
-        return gastosFiltrados.map((gasto, index) => {
-            const estaEditando = gastoEditando === index;
-            const { valor, data, descricao, categoria } = valoresEditados;
-            
-            return (
-                <tr key={index}>
-                    <td>
-                        {estaEditando ? (
-                            <input
-                                type="text"
-                                value={valor}
-                                onChange={(e) =>
-                                    setValoresEditados({
-                                        ...valoresEditados,
-                                        valor: e.target.value,
-                                    })
-                                }
-                            />
-                        ) : (
-                            gasto.valor
-                        )}
-                    </td>
-                    <td>{gasto.data}</td>
-                    <td>
-                        {estaEditando ? (
-                            <input
-                                type="text"
-                                value={descricao}
-                                onChange={(e) =>
-                                    setValoresEditados({
-                                        ...valoresEditados,
-                                        descricao: e.target.value,
-                                    })
-                                }
-                            />
-                        ) : (
-                            gasto.descricao
-                        )}
-                    </td>
-                    <td>
-                        {estaEditando ? (
-                            <select
-                                value={categoria}
-                                onChange={(e) => setCategoriaEditada(e.target.value)}
-                            >
-                                {opcoesCategoria.map((opcao, index) => (
-                                    <option key={index} value={opcao}>
-                                        {opcao}
-                                    </option>
-                                ))}
-                            </select>
-                        ) : (
-                            gasto.categoria
-                        )}
-                    </td>
-                    <td>
-                        {estaEditando ? (
-                            <button onClick={confirmarEdicao}>Confirmar</button>
-                        ) : (
-                            <>
-                                <button onClick={() => removerGasto(index)}>Remover</button>
-                                <button onClick={() => editarGasto(index)}>Editar</button>
-                            </>
-                        )}
-                    </td>
-                </tr>
-            );
-        });
-    };
-
-    return (
-        <div>
-            <table className={styles.tabelaGastos}>
-                <TabelaHeader
-                    categoriaSelecionada={categoriaSelecionada}
-                    setCategoriaSelecionada={setCategoriaSelecionada}
-                    opcoesCategoria={opcoesCategoria}
-                    alternarOrdenacao={alternarOrdenacao}
-                />
-                <tbody>{renderizarGastos()}</tbody>
-                <tfoot>
-                    <tr>
-                        <td>Total</td>
-                        <td>{somaValores()}</td>
-                        <td>
-                            <AdicionarGasto onAdicionar={adicionarGasto} />
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    );
+      <button className={styles.btnresumo} onClick={handleClick}>Mostrar resumo</button>
+    </div>
+  );
 }
 
-export default TabelaGastos;
+export default TabelaGastos;

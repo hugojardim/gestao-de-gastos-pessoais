@@ -30,9 +30,11 @@ function Login() {
     }
 
     return (
-    <div className={style.containerLogin}>
-        <h2 className={style.titleLogin}>Tela de Login</h2>
-        <Form enviarDadosParaPai={receberDadosDoFilho} />
+    <div className={style.centralizarLogin}>
+        <div className={style.containerLogin}>
+            <h2 className={style.titleLogin}>Tela de Login</h2>
+            <Form enviarDadosParaPai={receberDadosDoFilho} />
+        </div>
     </div>
     );
 }

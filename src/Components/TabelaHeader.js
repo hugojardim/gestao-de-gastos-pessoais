@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from './TabelaGastos.module.css';
 
 function TabelaHeader({ categoriaSelecionada, setCategoriaSelecionada, opcoesCategoria, alternarOrdenacao }) {
   return (
     <thead>
       <tr>
-        <th>
+        <th className={styles.campoValor}>
             Valor
             <button onClick={alternarOrdenacao}>Ordenar</button>
         </th>

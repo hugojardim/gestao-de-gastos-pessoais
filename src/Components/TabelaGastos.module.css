@@ -4,10 +4,13 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    background: #023E8A;
+    padding-top: 25px;
+    margin-bottom: 30px;
 }
 
 .tabelaGastos thead {
-    background-color: #023E8A;
+    background-color: #233751;
     color: #FFF;
     font-weight: 600;
 
@@ -15,7 +18,7 @@
 .tabelaGastos thead tr{
     display: flex;
     justify-content: space-around;
-    padding-right: 200px;
+    align-items: center;
 }
 
 .tabelaGastos tbody {
@@ -26,7 +29,7 @@
 
 .tabelaGastos tbody tr{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .tabelaGastos tfoot {
@@ -40,6 +43,16 @@
     align-items: center;
 }
 
+.saidaTotal {
+    display: flex;
+    background: #0077B6;
+    border-radius: 11px;
+}
+
+.totalGastos {
+    background-color: #184056;
+    border-radius: 0 10px 10px 0;
+}
 
 .tabelaGastos tfoot tr td {
     padding: 10px;
@@ -51,7 +64,7 @@
     align-items: center;
 }
 
-.tabelaGastos input {
+.tabelaGastos input, .tabelaGastos select {
     padding: 5px;
     margin: 10px;
     border-radius: 5px;
@@ -67,6 +80,7 @@
     border-radius: 5px;
     padding: 9px;
     width: fit-content;
+    margin-right: 80px;
 }
 
 .btnAdicionarGasto:hover {
@@ -77,6 +91,7 @@
     display: flex;
     gap: 5px;
     padding-block: 10px;
+    padding-top: 40px;
 }
 
 .DadosGasto {
@@ -93,4 +108,72 @@
     gap: 5px;
     border-radius: 5px;
     width: 254px;
+}
+
+.conjuntoTabela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.btnresumo {
+    background-color: #90E0EF;
+    color: #000;
+    border: 2px solid #0096C7;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.bodyGastos {
+    color: #FFF;
+    border: 1px solid #233751;
+}
+
+.saidaGastos {
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    padding-inline: 10px;
+    background-color: #195eb7;
+    align-items: center;
+}
+
+.btnRemover {
+    background-color: #E63946;
+    color: #FFF;
+    border: 0;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.btnEditar {
+    background-color: #d86c00;
+    color: #FFF;
+    border: 0;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.campoValor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.campoValor button {
+    background-color: #00B4D8;
+    border: 0;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+    cursor: pointer;
 }
