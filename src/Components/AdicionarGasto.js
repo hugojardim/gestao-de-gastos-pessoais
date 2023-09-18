@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import stylesTabela from './TabelaGastos.module.css';
 
 
-function AdicionarGasto({ onAdicionar }) {
+function AdicionarGasto({ onAdicionar, opcoesCategoria }) {
     const [gasto, setGasto] = useState({
         valor: '',
         data: '',
@@ -20,8 +20,6 @@ function AdicionarGasto({ onAdicionar }) {
     };
 
     const adicionarGasto = () => {
-
-        console.log(typeof(gasto.valor));
         
         switch (true) {
             case gasto.valor === '0':
@@ -52,8 +50,6 @@ function AdicionarGasto({ onAdicionar }) {
         }
         
     };
-    
-    const opcoesCategoria = ['Urgente', 'Importante', 'Delegável', 'Adiável', 'Desnecessário'];
 
     return (
         <>
