@@ -21,3 +21,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.btnCadastrar {
+    background-color: #0096C7;
+    color: #FFF;
+    border: 0;
+    border-radius: 5px;
+    padding: 9px;
+    width: fit-content;
+    cursor: pointer;
+}

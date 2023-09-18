@@ -5,7 +5,7 @@
     padding-block: 10px;
 }
 
-.submitButton {
+.submitButton, .btnCadastrar {
     background-color: #00B4D8;
     border: 0;
     border-radius: 5px;
@@ -26,4 +26,9 @@
     width: 25svw;
     min-width: 100px;
     max-width: 300px;
+}
+
+
+.btnCadastrar {
+    background-color: #90E0EF;
 }

@@ -8,9 +8,11 @@ function Login() {
 
     const [dadosRecebidos, setDadosRecebidos] = useState('');
     const [redirecionarParaIndex, setRedirecionarParaIndex] = useState(false);
+    const dados = <DadosLogin/>;
 
     const receberDadosDoFilho = (dados) => {
         setDadosRecebidos(dados);
+        
         verificarCredenciais(dados);
     };
     
@@ -25,15 +27,20 @@ function Login() {
         return false;
     }
 
+    function cadastrarUser({email, senha}) {
+        dados.type.push({email: email, senha: senha});
+        console.log(dados.type);
+    }
+
     if (redirecionarParaIndex) {
         return <Navigate to="/index" />;
     }
-
+    
     return (
     <div className={style.centralizarLogin}>
         <div className={style.containerLogin}>
             <h2 className={style.titleLogin}>Tela de Login</h2>
-            <Form enviarDadosParaPai={receberDadosDoFilho} />
+            <Form enviarDadosParaPai={receberDadosDoFilho} cadastrarUser={cadastrarUser} />
         </div>
     </div>
     );

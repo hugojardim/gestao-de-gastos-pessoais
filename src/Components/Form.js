@@ -3,10 +3,19 @@ import Input from "./Input";
 import inputStyle from './Input.module.css'
 import styles from './Form.module.css'
 
-function Form({ enviarDadosParaPai }) {
+function Form({ enviarDadosParaPai, cadastrarUser }) {
     function sendForm(e) {
         e.preventDefault();
-        enviarDadosParaPai({ email, senha });
+        const submitButtonId = e.nativeEvent.submitter.id; // Obtenha o id do botão clicado
+
+        if (submitButtonId === "submit") {
+            enviarDadosParaPai({ email, senha });
+
+        } else if (submitButtonId === "cadastro") {
+            cadastrarUser({ email, senha });
+            setEmail('');
+            setSenha('');
+        }
     }
 
     function handleEmailChange(e) {
@@ -41,6 +50,13 @@ function Form({ enviarDadosParaPai }) {
                 className={inputStyle.submitButton}
                 type="submit"
                 value="Entrar"
+            />
+            <Input
+                id="cadastro"
+                className={inputStyle.btnCadastrar}
+                type="submit"
+                value="Cadastrar"
+                onChange={cadastrarUser}
             />
         </form>
     );
