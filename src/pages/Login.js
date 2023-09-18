@@ -23,13 +23,13 @@ function Login() {
             return true;
           }
         }
-        alert("Credenciais estão em DadosLogin.js");
+        alert("Castrar novo usuário ou utilizar credenciais que estão em DadosLogin.js");
         return false;
     }
 
     function cadastrarUser({email, senha}) {
         dados.type.push({email: email, senha: senha});
-        console.log(dados.type);
+        alert("Credenciais cadastradas com sucesso!");
     }
 
     if (redirecionarParaIndex) {

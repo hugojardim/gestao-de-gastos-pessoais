@@ -6,7 +6,7 @@ import styles from './Form.module.css'
 function Form({ enviarDadosParaPai, cadastrarUser }) {
     function sendForm(e) {
         e.preventDefault();
-        const submitButtonId = e.nativeEvent.submitter.id; // Obtenha o id do botão clicado
+        const submitButtonId = e.nativeEvent.submitter.id;
 
         if (submitButtonId === "submit") {
             enviarDadosParaPai({ email, senha });
