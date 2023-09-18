@@ -4,6 +4,10 @@ Este repositório contém um app de Gestão de gastos pessoal.
 
 ## Available Scripts
 
+To load dependencies run:
+
+### `npm init`
+
 In the project directory, you can run:
 
 ### `npm start`
