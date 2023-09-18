@@ -1,6 +1,6 @@
 # Este é um projeto de estudo de React
 
-Neste repositório encontrará um app de Gestão de gastos pessoal.
+Este repositório contém um app de Gestão de gastos pessoal.
 
 ## Available Scripts
 
